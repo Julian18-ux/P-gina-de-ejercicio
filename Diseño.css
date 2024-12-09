@@ -40,7 +40,7 @@ body {
 .hero {
   text-align: center;
   padding: 100px 20px;
-  background: url('/imágenes/fondoevento.jpg') no-repeat center center/cover;
+  background: url('/fondoevento.jpg') no-repeat center center/cover;
   color: white;
 }
 
