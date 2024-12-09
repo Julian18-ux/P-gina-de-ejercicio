@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMENTARIOS</title>
+  <link rel="stylesheet" href="/Diseño.css">
+</head>
+<style>
+  .luz{
+  
+  background: radial-gradient(circle, black 5%,#ff6347 10%, #ffa500 50%, #32cd32 90%,#070605 50%); /* Rojo, naranja, verde */ /* Gradiente */
+  -webkit-background-clip: text; /* Necesario para Safari */
+  color: transparent; /* Hace que solo se vea el gradiente */
+}
+
+.a1{
+  
+  
+  color:white; 
+}
+</style>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <img src="/imágenes/Logo.jpg"  class="img1"alt="">
+    <div class="logo">Contactos</div>
+    <nav class="nav">
+      <a href="/index.html">Inicio</a>
+     
+     
+     
+      <a href="/contacto y desarrolladores/contacto.html">Contacto</a>
+    
+      <a href="/contacto y desarrolladores/Desarrolladores.html">Desarrolladores</a>
+    </nav>
+  </header>
+  
+  <center>
+    
+    
+    
+  </center>
+
+
+
+  <!-- Sección de Chefs -->
+          <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .comment-section {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .comment-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .comment-form input, .comment-form textarea {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .comment-form button {
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .comment-form button:hover {
+      background: #0056b3;
+    }
+    .comment-list {
+      margin-top: 20px;
+    }
+    .comment-item {
+      background: #f9f9f9;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .comment-item strong {
+      display: block;
+      font-size: 14px;
+    }
+    .comment-item p {
+      margin: 5px 0 0;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Caja de comentarios -->
+  <section class="comment-section">
+    <h2>Deja tu comentario</h2>
+    <form class="comment-form" id="commentForm">
+      <input type="text" id="name" placeholder="Tu nombre" required>
+      <textarea id="message" placeholder="Escribe tu comentario aquí" rows="4" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div class="comment-list" id="commentList">
+      <!-- Aquí aparecerán los comentarios -->
+    </div>
+  </section>
+
+  <script>
+    const commentForm = document.getElementById('commentForm');
+    const commentList = document.getElementById('commentList');
+
+    // Cargar comentarios desde localStorage
+    const loadComments = () => {
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      commentList.innerHTML = comments.map(comment => `
+        <div class="comment-item">
+          <strong>${comment.name}</strong>
+          <p>${comment.message}</p>
+        </div>
+      `).join('');
+    };
+
+    // Guardar un nuevo comentario
+    commentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const message = document.getElementById('message').value;
+
+      if (!name || !message) return;
+
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      comments.push({ name, message });
+      localStorage.setItem('comments', JSON.stringify(comments));
+
+      document.getElementById('name').value = '';
+      document.getElementById('message').value = '';
+      loadComments();
+    });
+
+    // Inicializar comentarios
+    loadComments();
+  </script>
+
+    
+   
+    
+ 
+
+
+
+</body>
+</html>

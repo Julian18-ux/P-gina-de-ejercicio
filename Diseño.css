@@ -1,0 +1,162 @@
+  
+  /* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #42445A;
+  color: white;
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+}
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: url('/imágenes/fondoevento.jpg') no-repeat center center/cover;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  
+}
+
+.hero p {
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #fff;
+  color: #ff6347;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #ff4500;
+  color: white;
+}
+
+/* Chefs Section */
+.chefs-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.chefs-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.chef-card {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+
+  text-align: center;
+  max-width: 3000px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chef-card img {
+  border-radius: 25%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.chef-card h3 {
+  margin: 12px 0;
+  font-size: 1.5rem;
+}
+
+.chef-card p {
+  color: #666;
+}
+
+.chef-card button {
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chef-card button:hover {
+  background-color: #ff4500;
+}
+
+/* Cuisine Section */
+.cuisine-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.cuisine-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cuisine-card {
+  padding: 20px;
+  background-color: black;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  min-width: 100px;
+  text-transform: uppercase;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+.img1{
+  
+  width: 100px;
+  height:100px;
+  
+  
+}
+
+a{
+  
+  color:black;
+text-decoration:none;
+}
