@@ -6,46 +6,6 @@
   <title>COMENTARIOS</title>
   <link rel="stylesheet" href="/Diseño.css">
 </head>
-<style>
-  .luz{
-  
-  background: radial-gradient(circle, black 5%,#ff6347 10%, #ffa500 50%, #32cd32 90%,#070605 50%); /* Rojo, naranja, verde */ /* Gradiente */
-  -webkit-background-clip: text; /* Necesario para Safari */
-  color: transparent; /* Hace que solo se vea el gradiente */
-}
-
-.a1{
-  
-  
-  color:white; 
-}
-</style>
-<body>
-
-  <!-- Header -->
-  <header class="header">
-    <img src="/Logo.jpg"  class="img1"alt="">
-    <div class="logo">Contactos</div>
-    <nav class="nav">
-      <a href="/index.html">Inicio</a>
-     
-     
-     
-      <a href="/contacto.html">Contacto</a>
-    
-      <a href="/Desarrolladores.html">Desarrolladores</a>
-    </nav>
-  </header>
-  
-  <center>
-    
-    
-    
-  </center>
-
-
-
-  <!-- Sección de Chefs -->
           <style>
     body {
       font-family: Arial, sans-serif;
@@ -101,9 +61,31 @@
       margin: 5px 0 0;
       font-size: 13px;
     }
+    
+    
+    .btn1{
+      
+     padding: 5px 10px;
+      background: #000000;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer; 
+      
+      
+    }
   </style>
-</head>
 <body>
+  <!-- Header -->
+  <header class="header">
+    <img src="/Logo.jpg" class="img1" alt="">
+    <div class="logo">Contactos</div>
+    <nav class="nav">
+      <a href="/index.html">Inicio</a>
+      <a href="/contacto.html">Contacto</a>
+      <a href="/Desarrolladores.html">Desarrolladores</a>
+    </nav>
+  </header>
 
   <!-- Caja de comentarios -->
   <section class="comment-section">
@@ -125,10 +107,12 @@
     // Cargar comentarios desde localStorage
     const loadComments = () => {
       const comments = JSON.parse(localStorage.getItem('comments')) || [];
-      commentList.innerHTML = comments.map(comment => `
-        <div class="comment-item">
+      commentList.innerHTML = comments.map((comment, index) => `
+      
+        <div class="comment-item" data-index="${index}">
           <strong>${comment.name}</strong>
           <p>${comment.message}</p>
+          <button class="btn1" onclick="deleteComment(${index})">Eliminar</button>
         </div>
       `).join('');
     };
@@ -150,16 +134,16 @@
       loadComments();
     });
 
+    // Eliminar comentario
+    const deleteComment = (index) => {
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      comments.splice(index, 1); // Eliminar comentario
+      localStorage.setItem('comments', JSON.stringify(comments)); // Actualizar almacenamiento
+      loadComments(); // Recargar comentarios
+    };
+
     // Inicializar comentarios
     loadComments();
   </script>
-
-    
-   
-    
- 
-
-
-
 </body>
 </html>
