@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COMENTARIOS</title>
   <link rel="stylesheet" href="/Diseño.css">
-  <style>
+</head>
+          <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
@@ -60,17 +61,22 @@
       margin: 5px 0 0;
       font-size: 13px;
     }
-    .btn1 {
-      padding: 5px 10px;
+    
+    
+    .btn1{
+      
+     padding: 5px 10px;
       background: #000000;
       color: white;
       border: none;
       border-radius: 4px;
-      cursor: pointer;
+      cursor: pointer; 
+      
+      
     }
   </style>
-</head>
 <body>
+  <!-- Header -->
   <header class="header">
     <img src="/Logo.jpg" class="img1" alt="">
     <div class="logo">Contactos</div>
@@ -94,41 +100,21 @@
     </div>
   </section>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js"></script>
   <script>
-    // Configuración de Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyBtVHpmTklXNDrYm3S6DFfI1FWsqJx-VjQ",
-      authDomain: "database-e4c6e.firebaseapp.com",
-      databaseURL: "https://database-e4c6e-default-rtdb.firebaseio.com",
-      projectId: "database-e4c6e",
-      storageBucket: "database-e4c6e.appspot.com",
-      messagingSenderId: "979842836880",
-      appId: "1:979842836880:web:1fdc87567f5a0c1179ab15",
-      measurementId: "G-XFJWKJT9Q0"
-    };
-
-    // Inicializar Firebase
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-
     const commentForm = document.getElementById('commentForm');
     const commentList = document.getElementById('commentList');
 
-    // Cargar comentarios desde Firebase
+    // Cargar comentarios desde localStorage
     const loadComments = () => {
-      database.ref('comments').on('value', (snapshot) => {
-        const comments = snapshot.val() || {};
-        commentList.innerHTML = Object.keys(comments).map(key => `
-          <div class="comment-item" data-id="${key}">
-            <strong>${comments[key].name}</strong>
-            <p>${comments[key].message}</p>
-            <button class="btn1" onclick="deleteComment('${key}')">Eliminar</button>
-          </div>
-        `).join('');
-      });
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      commentList.innerHTML = comments.map((comment, index) => `
+      
+        <div class="comment-item" data-index="${index}">
+          <strong>${comment.name}</strong>
+          <p>${comment.message}</p>
+          <button class="btn1" onclick="deleteComment(${index})">Eliminar</button>
+        </div>
+      `).join('');
     };
 
     // Guardar un nuevo comentario
@@ -139,16 +125,21 @@
 
       if (!name || !message) return;
 
-      const newCommentRef = database.ref('comments').push();
-      newCommentRef.set({ name, message });
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      comments.push({ name, message });
+      localStorage.setItem('comments', JSON.stringify(comments));
 
       document.getElementById('name').value = '';
       document.getElementById('message').value = '';
+      loadComments();
     });
 
     // Eliminar comentario
-    const deleteComment = (id) => {
-      database.ref('comments/' + id).remove();
+    const deleteComment = (index) => {
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      comments.splice(index, 1); // Eliminar comentario
+      localStorage.setItem('comments', JSON.stringify(comments)); // Actualizar almacenamiento
+      loadComments(); // Recargar comentarios
     };
 
     // Inicializar comentarios
